@@ -1,4 +1,4 @@
-const { pool } = require("../../../config/database");
+const {pool} = require("../../../config/database");
 const { errResponse } = require("../../../config/response");
 const baseResponse = require("../../../config/baseResponseStatus");
 const reviewDao = require("./reviewDao");
