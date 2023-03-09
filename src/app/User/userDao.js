@@ -50,9 +50,9 @@ async function insertUserInfo(connection, insertUserInfoParams) {
 //유저 로그인
 async function signinUser(connection, signinUserParams){
   const signinUserQuery =`
-    SELECT id, createdAt, updatedAt, nickname, name, email, recommendId
+    SELECT id, createdAt, updatedAt, nickname, name, email, recommendID
     FROM User
-    WHERE email = ? AND password = ? AND status='Activated';;
+    WHERE email = ? AND password = ? AND status='Activated';
   `
   const signinUserRow = await connection.query(
     signinUserQuery,

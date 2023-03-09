@@ -214,7 +214,7 @@ exports.signinUser = async function (email, password) {
           createAt: userSignInResult.createdAt,
           nickname: userSignInResult.nickname,
           email: userSignInResult.email,
-          recommendUserCode: userSignInResult.recommendUserId,
+          recommendUserCode: userSignInResult.recommendID,
         }, // 토큰의 내용(payload)
         secret_config.ACCESSjwtsecret, // 비밀키
         {
@@ -229,7 +229,7 @@ exports.signinUser = async function (email, password) {
           createAt: userSignInResult.createdAt,
           nickName: userSignInResult.nickName,
           email: userSignInResult.email,
-          recommendUserCode: userSignInResult.recommendUserId,
+          recommendUserCode: userSignInResult.recommendID,
         }, // 토큰의 내용(payload)
         secret_config.REFRESHjwtsecret, // 비밀키
         {
@@ -244,7 +244,6 @@ exports.signinUser = async function (email, password) {
         refreshTokenParams
       );
       connection.commit();
-        
       logger.info(`App - signIn Service info email : ${email} 로그인 성공`)
       return response(baseResponse.SUCCESS, {
         accessToken: AccessToken,
