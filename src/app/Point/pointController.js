@@ -23,14 +23,6 @@ exports.postInvitePoint = async function(req, res){
     return res.send(result);
 }
 
-/**
- * 포인트 내역 조회
- * @param {*} req 
- * @param {*} res 
- */
-exports.getPointHistory = async function(req, res){
-    return res.send(temp); //임시
-}
 
 /**
  * 2. 추천인 조회 API

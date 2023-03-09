@@ -82,6 +82,7 @@ exports.jwtCheck = async function (token){
     checkTokenResult.id = token.id;
     checkTokenResult.email = token.email;
     checkTokenResult.nickname = token.nickname;
+    checkTokenResult.userCode = token.recommendUserCode;
 
     logger.info("jwtCheck - 사용자 토큰을 확인함 : " + token.email);
     return response(baseResponse.SUCCESS, checkTokenResult);
