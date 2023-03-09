@@ -1,0 +1,7 @@
+openapi: 3.0.0
+info:
+  title: ANDA API
+  version: 1.0.0
+  description: ANDA API documentation using Swagger
+servers:
+  - url: http://localhost:8000/
