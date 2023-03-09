@@ -1,0 +1,8 @@
+/app/point/invite:
+  get:
+    tags:
+      - /point
+    summary: '친구초대 포인트 수여'
+    response:
+    '200':
+      $ref: './openAPI.yaml#/components/response/successResponse'

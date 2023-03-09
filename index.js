@@ -23,7 +23,7 @@ else if(argv[0] == "test"){
 
 // express 서버를 실행할 때 필요한 포트 정의 및 실행 시 callback 함수를 받습니다
 app.listen(port, function() {
-    const swaggerSpec = YAML.load(path.join(__dirname, './swagger.yaml'));
+    const swaggerSpec = YAML.load(path.join(__dirname, './src/swagger.yaml'));
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
     if(argv[0] == "deploy") console.log(`start! ${argv[0]} express server on port 80(7002)`);

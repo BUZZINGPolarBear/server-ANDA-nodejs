@@ -1,0 +1,30 @@
+openapi: 3.0.0
+info:
+  title: ANDA API 명세서
+  version: 1.0.0
+  description: ANDA API documentation using Swagger
+servers:
+  - url: 'http://localhost:8000/'
+paths:
+  /app/point/invite:
+    get:
+      '200':
+        description: 요청 성공
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: null
+      tags:
+        - /point
+      summary: 친구초대 포인트 수여
+      response: null
+components:
+  response:
+    successResponse:
+      description: 요청 성공
+      content:
+        application/json:
+          schema:
+            type: object
+            properties: null

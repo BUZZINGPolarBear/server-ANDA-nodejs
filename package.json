@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node test.js",
     "start": "node index.js",
-    "api-docs": "swagger-cli bundle ./src/swagger/openapi.yaml --outfile ./swagger.yaml --type yaml",
+    "api-docs": "swagger-cli bundle ./src/swagger/openapi.yaml --outfile ./src/swagger.yaml --type yaml",
     "predev": "npm run api-docs"
   },
   "repository": {
