@@ -434,6 +434,79 @@ async function getReviewArea(connection, location){
 
 }
 
+async function getReviewAreaSimple(connection, location){
+    let getReviewAreaResult = new Object();
+    const whereClause = dynamicLocationWhereClause(location);
+    
+    const lasicReview = `
+        SELECT O.id AS hospitalId, O.name AS hospitalName, cityName, townName, ROUND(AVG(friendlyScore + priceScore + recommendScore + infoScore + recommendScore)/5, 2) AS averageScore, COUNT(*) AS reviewCnt
+        FROM Ophthalmology AS O
+        INNER JOIN LasicReview Reivew on O.id = Reivew.ophthalmologyId
+        ${whereClause} AND Reivew.status = 'Activated'
+        GROUP BY O.id
+        LIMIT 3;
+    `
+    const lasicReviewRow = await connection.query(lasicReview);
+    getReviewAreaResult.lasicAreaReview = lasicReviewRow[0];
+
+    const lasecReview = `
+        SELECT O.id AS hospitalId, O.name AS hospitalName, cityName, townName, ROUND(AVG(friendlyScore + priceScore + recommendScore + infoScore + recommendScore)/5, 2) AS averageScore, COUNT(*) AS reviewCnt
+        FROM Ophthalmology AS O
+        INNER JOIN LasecReview Reivew on O.id = Reivew.ophthalmologyId
+        ${whereClause} AND Reivew.status = 'Activated'
+        GROUP BY O.id
+        LIMIT 3;
+    `
+    const lasecReviewRow = await connection.query(lasecReview);
+    getReviewAreaResult.lasecAreaReview = lasecReviewRow[0];
+
+    const lensInsertReview = `
+        SELECT O.id AS hospitalId, O.name AS hospitalName, cityName, townName, ROUND(AVG(friendlyScore + priceScore + recommendScore + infoScore + recommendScore)/5, 2) AS averageScore, COUNT(*) AS reviewCnt
+        FROM Ophthalmology AS O
+        INNER JOIN LensInsertReview Reivew on O.id = Reivew.ophthalmologyId
+        ${whereClause} AND Reivew.status = 'Activated'
+        GROUP BY O.id
+        LIMIT 3;
+    `
+    const lensInsertReviewRow = await connection.query(lensInsertReview);
+    getReviewAreaResult.lensInsertAreaReview = lensInsertReviewRow[0];
+
+    const smileLasicReview = `
+        SELECT O.id AS hospitalId, O.name AS hospitalName, cityName, townName, ROUND(AVG(friendlyScore + priceScore + recommendScore + infoScore + recommendScore)/5, 2) AS averageScore, COUNT(*) AS reviewCnt
+        FROM Ophthalmology AS O
+        INNER JOIN SmileLasicReview Reivew on O.id = Reivew.ophthalmologyId
+        ${whereClause} AND Reivew.status = 'Activated'
+        GROUP BY O.id
+        LIMIT 3;
+    `
+    const smileLasicReviewRow = await connection.query(smileLasicReview);
+    getReviewAreaResult.smileLasicAreaReview = smileLasicReviewRow[0];
+
+    const cataractReview = `
+        SELECT O.id AS hospitalId, O.name AS hospitalName, cityName, townName, ROUND(AVG(friendlyScore + priceScore + recommendScore + infoScore + recommendScore)/5, 2) AS averageScore, COUNT(*) AS reviewCnt
+        FROM Ophthalmology AS O
+        INNER JOIN CataractReview Reivew on O.id = Reivew.ophthalmologyId
+        ${whereClause} AND Reivew.status = 'Activated'
+        GROUP BY O.id
+        LIMIT 3;
+    `
+    const cataractReviewRow = await connection.query(cataractReview);
+    getReviewAreaResult.cataractAreaReview = cataractReviewRow[0];
+    
+    const diagnosisReview = `
+        SELECT O.id AS hospitalId, O.name AS hospitalName, cityName, townName, ROUND(AVG(friendlyScore + priceScore + recommendScore + infoScore + recommendScore)/5, 2) AS averageScore, COUNT(*) AS reviewCnt
+        FROM Ophthalmology AS O
+        INNER JOIN diagnosisReview Reivew on O.id = Reivew.ophthalmologyId
+        ${whereClause} AND Reivew.status = 'Activated'
+        GROUP BY O.id
+        LIMIT 3;
+    `
+    const diagnosisReviewRow = await connection.query(diagnosisReview);
+    getReviewAreaResult.diagnosisAreaReview = diagnosisReviewRow[0];
+
+    return getReviewAreaResult
+
+}
 
 async function getDetailReview(connection, reviewType, reviewId){
     let result = new Object();
@@ -507,6 +580,7 @@ module.exports = {
     retrieveTop9,
     createReview,
     getDetailReview,
-    getDetailImageReview
+    getDetailImageReview,
+    getReviewAreaSimple
 }
 

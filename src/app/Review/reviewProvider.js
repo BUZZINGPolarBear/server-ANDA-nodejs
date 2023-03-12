@@ -72,6 +72,25 @@ exports.getReviewArea = async function(location){
     }
 }
 
+//[간단]위치 기반 리뷰 반환
+exports.getReviewAreaSimple = async function(location){
+    const connection = await pool.getConnection(async (conn) => conn);
+    let response;
+    try{
+        await connection.beginTransaction();
+        response = await reviewDao.getReviewAreaSimple(connection, location);
+        logger.info(`App - [간단]위치 기반 리뷰 조회 Service success. location: ${location}`);
+        await connection.commit();
+    } catch(err){
+        await connection.rollback();
+        logger.error(`App - [간단]위치 기반 리뷰 조회 Service error\n: ${err.message}`);
+        response = errResponse(baseResponse.TRANSACTION_ERROR);
+    }  finally{
+        connection.release();
+        return response;
+    }
+}
+
 // 리뷰 상세 조회
 exports.getDetailReview = async function(reviewType, reviewId){
     const connection = await pool.getConnection(async (conn) => conn);
