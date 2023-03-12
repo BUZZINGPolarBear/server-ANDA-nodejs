@@ -21,4 +21,7 @@ module.exports = function(app){
     //6. 리뷰 상세 보기
     app.post('/app/review/view/detail', jwt.jwtMiddleware, review.getDetatilReview);
 
+    //3. 병원 리뷰 지역 카테고리 - 간단하게 보기
+    app.post('/app/review/view/area/simple', jwt.jwtMiddleware, review.getReviewAreaSimple);
+
 }
