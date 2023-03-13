@@ -444,6 +444,7 @@ async function getReviewAreaSimple(connection, location){
         INNER JOIN LasicReview Reivew on O.id = Reivew.ophthalmologyId
         ${whereClause} AND Reivew.status = 'Activated'
         GROUP BY O.id
+        ORDER BY averageScore DESC
         LIMIT 3;
     `
     const lasicReviewRow = await connection.query(lasicReview);
@@ -455,6 +456,7 @@ async function getReviewAreaSimple(connection, location){
         INNER JOIN LasecReview Reivew on O.id = Reivew.ophthalmologyId
         ${whereClause} AND Reivew.status = 'Activated'
         GROUP BY O.id
+        ORDER BY averageScore DESC
         LIMIT 3;
     `
     const lasecReviewRow = await connection.query(lasecReview);
@@ -466,6 +468,7 @@ async function getReviewAreaSimple(connection, location){
         INNER JOIN LensInsertReview Reivew on O.id = Reivew.ophthalmologyId
         ${whereClause} AND Reivew.status = 'Activated'
         GROUP BY O.id
+        ORDER BY averageScore DESC
         LIMIT 3;
     `
     const lensInsertReviewRow = await connection.query(lensInsertReview);
@@ -477,6 +480,7 @@ async function getReviewAreaSimple(connection, location){
         INNER JOIN SmileLasicReview Reivew on O.id = Reivew.ophthalmologyId
         ${whereClause} AND Reivew.status = 'Activated'
         GROUP BY O.id
+        ORDER BY averageScore DESC
         LIMIT 3;
     `
     const smileLasicReviewRow = await connection.query(smileLasicReview);
@@ -488,6 +492,7 @@ async function getReviewAreaSimple(connection, location){
         INNER JOIN CataractReview Reivew on O.id = Reivew.ophthalmologyId
         ${whereClause} AND Reivew.status = 'Activated'
         GROUP BY O.id
+        ORDER BY averageScore DESC
         LIMIT 3;
     `
     const cataractReviewRow = await connection.query(cataractReview);
@@ -499,6 +504,7 @@ async function getReviewAreaSimple(connection, location){
         INNER JOIN diagnosisReview Reivew on O.id = Reivew.ophthalmologyId
         ${whereClause} AND Reivew.status = 'Activated'
         GROUP BY O.id
+        ORDER BY averageScore DESC
         LIMIT 3;
     `
     const diagnosisReviewRow = await connection.query(diagnosisReview);
