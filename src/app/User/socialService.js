@@ -3,9 +3,12 @@ const {response, errResponse} = require("../../../config/response");
 
 const { logger } = require("../../../config/winston");
 const axios = require('axios');
-exports.signupSocialUser = async function(code){
+
+//[카카오톡] 회원 가입
+exports.signupSocialUser = async function(code, isOverAge, isTermsOfUseAgree, isPrivacyPolicyAgree, isMarketingInfoAgree){
     let kakaoGetTokenRes;
     try{
+        //토큰을 해독하여 Access 토큰을 받아올 수 있는 준비를 한다.
         kakaoGetTokenRes = await axios({
             method: 'post',
             url: 'https://kauth.kakao.com/oauth/token',
@@ -27,6 +30,7 @@ exports.signupSocialUser = async function(code){
     const accessToken = kakaoGetTokenRes.data.access_token;
     let kakaoGetProfileRes;
     try{
+        // Access token을 이용하여 카카오에게 사용자 정보를 요청한다.
         kakaoGetProfileRes = await axios({
             method: 'get',
             url: 'https://kapi.kakao.com/v2/user/me',
@@ -40,11 +44,8 @@ exports.signupSocialUser = async function(code){
     }
 
     const userEmail = kakaoGetProfileRes.data.kakao_account.email;
-    const userNickname = kakaoGetProfileRes.data.kakao_account.profile.nickname;
+    const userNickname = kakaoGetProfileRes.data.kakao_account.profile.nickname ?? userEmail.split('@')[0];
 
-    let responseObj = {
-        email: userEmail,
-        nickname: userNickname
-    };
-    return response(baseResponse.SUCCESS, responseObj);
+    
+    return response(baseResponse.SUCCESS);
 }

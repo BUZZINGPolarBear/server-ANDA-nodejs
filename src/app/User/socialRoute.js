@@ -1,5 +1,5 @@
 module.exports = function(app){
     const socialController = require('./socialController');
-
-    app.get('/app/users/social/signup', socialController.signupSocialUser);
+    
+    app.post('/app/users/social/signup', socialController.signupSocialUser);
 }
