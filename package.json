@@ -4,7 +4,7 @@
   "description": "UMC-anda-server",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js",
+    "test": "jest",
     "start": "node index.js",
     "api-docs": "swagger-cli bundle ./src/swagger/openapi.yaml --outfile ./src/swagger.yaml --type yaml",
     "predev": "npm run api-docs"
@@ -33,6 +33,7 @@
     "crypto": "^1.0.1",
     "dotenv": "16.0.3",
     "express": "^4.18.1",
+    "jet": "0.8.2",
     "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
     "moment": "2.29.4",
@@ -52,6 +53,8 @@
     "yamljs": "0.3.0"
   },
   "devDependencies": {
+    "jest": "29.5.0",
+    "supertest": "6.3.3",
     "swagger-jsdoc": "6.2.5",
     "swagger-ui-express": "4.5.0"
   }
