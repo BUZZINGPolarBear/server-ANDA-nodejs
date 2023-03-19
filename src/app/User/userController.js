@@ -28,13 +28,13 @@ exports.postUsers = async function (req, res) {
         return res.send(response(baseResponse.SIGNUP_PASSWORD_EMPTY));
     if(!nickname)
         return res.send(response(baseResponse.SIGNUP_NICKNAME_EMPTY));
-    if(!isOverAge == null)
+    if(!isOverAge)
         return res.send(response(baseResponse.SIGNUP_IS_OVER_AGE_EMPTY));
-    if(!isTermsOfUseAgree == null)
+    if(!isTermsOfUseAgree)
         return res.send(response(baseResponse.SIGNUP_IS_TERMS_OF_USE_AGREE_EMPTY));
-    if(!isPrivacyPolicyAgree == null)
+    if(!isPrivacyPolicyAgree)
         return res.send(response(baseResponse.SIGNUP_IS_PRIVACY_POLICY_AGREE_EMPTY));
-    if(isMarketingInfoAgree == null)
+    if(!isMarketingInfoAgree)
         return res.send(response(baseResponse.SIGNUP_IS_MARKETING_INFO_AGREE_EMPTY));
 
     if(typeof(isOverAge) != 'boolean')

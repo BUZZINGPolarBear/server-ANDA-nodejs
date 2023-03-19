@@ -30,4 +30,4 @@ app.listen(port, function() {
     else if(argv[0] == "testServer") console.log(`start! ${argv[0]} express server on port 8000`);
 })
 
-// module.exports = app;
+module.exports = app;
