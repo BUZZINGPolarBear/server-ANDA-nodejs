@@ -30,6 +30,10 @@ module.exports = {
     SIGNUP_CODE_EMPTY : { "isSuccess": false, "code": 2006, "message":"인증코드를 입력해주세요."},
     BODY_EMPTY : { "isSuccess": false, "code": 2006, "message":"요청된 body가 없습니다."},
 
+    //소셜 로그인
+    SIGNUP_SOCIAL_CODE_EMPTY : { "isSuccess": false, "code": 25001, "message":"code를 입력해주세요."},
+    SIGNUP_SOCIAL_FAIL: { "isSuccess": false, "code": 25002, "message":"소셜 로그인에 실패했습니다."},
+
     // User -> 로그인 관련 Error 코드
     SIGNIN_EMAIL_EMPTY : { "isSuccess": false, "code": 2101, "message":"이메일을 입력해주세요." },
     SIGNIN_PASSWORD_EMPTY : { "isSuccess": false, "code": 2102, "message":"비밀번호를 입력해주세요." },
