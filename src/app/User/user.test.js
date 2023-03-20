@@ -10,7 +10,7 @@ describe('Test test/jest', () => {
   });
 });
 
-describe('Test Signup', () => {
+describe('회원가입 테스트', () => {
   it ('이메일 형식이 올바르지 않은 경우', (done) => {
     request(app).post('/app/users/signup').then((response) => {
       expect(response.body.code).toBe(2001);
@@ -41,7 +41,7 @@ describe('Test Signup', () => {
   })
   })
 
-  it ('약관 동의 항목 형식이 다른 경우', (done) => {
+  it ('약관 동의 항목 누락', (done) => {
     request(app).post('/app/users/signup')
     .send({
       email: 'aaa@bbb.com',
@@ -52,6 +52,54 @@ describe('Test Signup', () => {
     })
     .then((response) => {
       expect(response.body.code).toBe(2508);
+      done();
+  })
+  })
+  it ('약관 동의 항목 누락 - 2', (done) => {
+    request(app).post('/app/users/signup')
+    .send({
+      email: 'aaa@bbb.com',
+      password: '1234',
+      nickname: 'aaa',
+      isOverAge: true,
+      isTermsOfUseAgree: true,
+    })
+    .then((response) => {
+      expect(response.body.code).toBe(2509);
+      done();
+  })
+  })
+  it ('약관 항목 형식이 다른 경우', (done) => {
+    request(app).post('/app/users/signup')
+    .send({
+      email: 'aaa@bbb.com',
+      password: '1234',
+      nickname: 'aaa',
+      isOverAge: true,
+      isTermsOfUseAgree: true,
+      isPrivacyPolicyAgree: true,
+      isMarketingInfoAgree: 'yes'
+
+    })
+    .then((response) => {
+      expect(response.body.code).toBe(2514);
+      done();
+  })
+  })
+  it ('약관 항목 형식이 다른 경우-숫자가 입력됨', (done) => {
+    request(app).post('/app/users/signup')
+    .send({
+      email: 'aaa@bbb.com',
+      password: '1234',
+      nickname: 'aaa',
+      isOverAge: true,
+      isTermsOfUseAgree: true,
+      isPrivacyPolicyAgree: true,
+      isMarketingInfoAgree: 123
+
+    })
+    .then((response) => {
+      expect(response.body.code).toBe(2514);
       done();
   })
   })
