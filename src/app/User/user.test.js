@@ -104,3 +104,25 @@ describe('회원가입 테스트', () => {
   })
   })
 });
+
+describe('로그인 테스트', () => {
+  it('Body내용이 없는 경우', (done) => {
+    request(app).post('/app/users/signin')
+    .then((response) => {
+      expect(response.body.code).toBe(2101);
+      done();
+    });
+  });
+
+  it('이메일 형식이 잘못된 경우', (done) => {
+    request(app).post('/app/users/signin')
+    .send({
+      email: 'aaabb',
+      password: 'aaa'
+    })
+    .then((response) => {
+      expect(response.body.code).toBe(2504);
+      done();
+    });
+  });
+});
