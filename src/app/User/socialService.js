@@ -44,7 +44,9 @@ exports.signupSocialUser = async function(code, isOverAge, isTermsOfUseAgree, is
     }
 
     const userEmail = kakaoGetProfileRes.data.kakao_account.email;
-    const userNickname = kakaoGetProfileRes.data.kakao_account.profile.nickname ?? userEmail.split('@')[0];
+    let userNickname;
+    if(kakaoGetProfileRes.data.kakao_account.profile.nickname == null) userNickname = userEmail.split('@')[0];
+    else userNickname = kakaoGetProfileRes.data.kakao_account.profile.nickname;
 
     
     return response(baseResponse.SUCCESS);
